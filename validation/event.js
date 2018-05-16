@@ -1,18 +1,18 @@
 const Validator = require("validator");
 const isEmpty = require("./is-empty");
 
-module.exports = validateActivityInput = data => {
+module.exports = validateEventInput = data => {
   let errors = {};
 
   data.title = !isEmpty(data.title) ? data.title : "";
-  data.startDate = !isEmpty(data.startDate) ? data.startDate : "";
+  data.start = !isEmpty(data.start) ? data.start : "";
 
   if (Validator.isEmpty(data.title)) {
     errors.title = "Title is required";
   }
 
-  if (Validator.isEmpty(data.startDate)) {
-    errors.startDate = "Start date is required";
+  if (Validator.isEmpty(data.start)) {
+    errors.start = "Start date is required";
   }
 
   return {

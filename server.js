@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-const activities = require("./routes/api/activities");
+const events = require("./routes/api/events");
 
 const app = express();
 
@@ -18,7 +18,7 @@ mongoose
   .catch(err => console.log(err));
 
 //use route
-app.use("/api/activities", activities);
+app.use("/api/events", events);
 
 const port = process.env.PORT || 5000;
 

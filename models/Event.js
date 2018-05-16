@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ActivitySchema = new Schema({
+const EventSchema = new Schema({
   title: {
     type: String,
     require: true
   },
-  description: {
+  desc: {
     type: String
   },
-  startDate: {
+  start: {
     type: Date,
     require: true
   },
-  endDate: {
+  end: {
     type: Date
   }
 });
 
-module.exports = Activity = mongoose.model("activity", ActivitySchema);
+module.exports = Event = mongoose.model("event", EventSchema);
