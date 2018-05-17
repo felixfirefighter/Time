@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import Calendar from "./components/calendar/Calendar";
 import moment from "moment";
 
 import { Provider } from "react-redux";
 import store from "./store";
+
+import Calendar from "./components/calendar/Calendar";
+import Modal from "./components/modal/Modal";
 
 class App extends Component {
   render() {
@@ -11,6 +13,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <Calendar />
+          <Modal />
         </div>
       </Provider>
     );
