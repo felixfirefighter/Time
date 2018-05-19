@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
     case CLOSE_MODAL:
       return {
         ...state,
-        modalIsOpen: false
+        modalIsOpen: false,
+        slotDates: {}
       };
     default:
       return state;

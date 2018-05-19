@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case ADD_EVENT:
       return {
         ...state,
-        events: [...state.posts, action.payload],
+        events: [...state.events, action.payload],
         loading: false
       };
     case GET_EVENTS:

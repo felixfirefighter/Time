@@ -32,7 +32,7 @@ class Calendar extends Component {
         event.end = moment(event.end).toDate();
       });
 
-      console.log(events);
+      // console.log(events);
 
       calendar = (
         <BigCalendar
@@ -44,7 +44,7 @@ class Calendar extends Component {
           culture={"en"}
           onSelectSlot={slotInfo => {
             //open up modal
-            console.log(slotInfo);
+            // console.log(slotInfo);
             const { start, end } = slotInfo;
 
             //pass start and end date to action
