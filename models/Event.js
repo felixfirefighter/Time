@@ -14,7 +14,12 @@ const EventSchema = new Schema({
     require: true
   },
   end: {
-    type: Date
+    type: Date,
+    require: true
+  },
+  tag: {
+    type: Schema.Types.ObjectId,
+    ref: "tag"
   }
 });
 

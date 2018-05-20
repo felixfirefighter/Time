@@ -1,0 +1,147 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Form, Input, Button, Select, Row, Col } from "antd";
+
+import ColorPicker from "../common/ColorPicker";
+
+import { updateEventForm } from "../../actions/eventActions";
+import { getTags, getTagByName } from "../../actions/tagActions";
+
+class EventForm extends Component {
+  componentDidMount() {
+    this.props.getTags();
+  }
+
+  onInputChange = event => {
+    this.props.updateEventForm({ [event.target.name]: event.target.value });
+  };
+
+  onSelectChange = value => {
+    this.props.updateEventForm({ name: value });
+  };
+
+  onSelect = (value, option) => {
+    console.log(value, option);
+
+    //change color on select
+    this.props.getTagByName(value);
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const { getFieldsValue, validateFields, setFieldsValue } = this.props.form;
+
+    validateFields((err, values) => {
+      if (!err) {
+        setFieldsValue({
+          color: this.props.event.form.color
+        });
+
+        this.props.addEvent(getFieldsValue());
+        //close the modal after submitting
+        this.props.closeModal();
+      }
+    });
+  };
+
+  render() {
+    const { getFieldDecorator } = this.props.form;
+
+    let tags;
+    if (this.props.tag) {
+      tags = this.props.tag.tags.map(tag => {
+        return (
+          <Select.Option key={tag.name} value={tag.name}>
+            {tag.name}
+          </Select.Option>
+        );
+      });
+    }
+
+    return (
+      <Form onSubmit={this.onSubmit}>
+        <Form.Item>
+          {getFieldDecorator("title", {
+            rules: [
+              {
+                required: true,
+                message: "Title is required"
+              }
+            ]
+          })(
+            <Input
+              placeholder="Title"
+              name="title"
+              onChange={this.onInputChange}
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("start", {
+            rules: [
+              {
+                required: true,
+                message: "Start Date is required"
+              }
+            ]
+          })(<Input placeholder="Start Date" disabled />)}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("end", {
+            rules: [
+              {
+                required: true,
+                message: "End Date is required"
+              }
+            ]
+          })(<Input placeholder="End Date" disabled />)}
+        </Form.Item>
+
+        <Row type="flex" gutter={8} align="middle">
+          <Col span={20}>
+            <Form.Item>
+              {getFieldDecorator("name", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Tag name is required"
+                  }
+                ]
+              })(
+                <Select
+                  mode="combobox"
+                  placeholder="Add or select tag"
+                  onChange={this.onSelectChange}
+                  onSelect={this.onSelect}
+                >
+                  {tags}
+                </Select>
+              )}
+            </Form.Item>
+          </Col>
+          <Col span={4}>
+            {getFieldDecorator("color")(<input type="hidden" />)}
+            <Form.Item>
+              <ColorPicker />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Button type="primary" htmlType="submit">
+          Save
+        </Button>
+      </Form>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  event: state.event,
+  tag: state.tag
+});
+
+export default connect(mapStateToProps, {
+  getTags,
+  getTagByName,
+  updateEventForm
+})(EventForm);

@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
 
-import { getEvents, addEvent } from "../../actions/eventActions";
+import {
+  getEvents,
+  addEvent,
+  updateEventForm,
+  clearEventForm
+} from "../../actions/eventActions";
 import { openModal } from "../../actions/modalActions";
 import Spinner from "../common/Spinner";
 
@@ -47,8 +52,13 @@ class Calendar extends Component {
             // console.log(slotInfo);
             const { start, end } = slotInfo;
 
-            //pass start and end date to action
-            this.props.openModal({ start, end });
+            this.props.openModal();
+
+            //clear all the fields first
+            this.props.clearEventForm();
+
+            //pre fill the form
+            this.props.updateEventForm({ start, end });
           }}
         />
       );
@@ -59,9 +69,14 @@ class Calendar extends Component {
 }
 
 const mapStateToProps = state => ({
-  event: state.event
+  event: state.event,
+  tag: state.tag
 });
 
-export default connect(mapStateToProps, { getEvents, addEvent, openModal })(
-  Calendar
-);
+export default connect(mapStateToProps, {
+  getEvents,
+  addEvent,
+  updateEventForm,
+  clearEventForm,
+  openModal
+})(Calendar);

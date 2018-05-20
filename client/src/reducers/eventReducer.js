@@ -1,8 +1,21 @@
-import { GET_EVENTS, ADD_EVENT, EVENT_LOADING } from "../actions/types";
+import {
+  GET_EVENTS,
+  ADD_EVENT,
+  EVENT_LOADING,
+  UPDATE_EVENT_FORM,
+  CLEAR_EVENT_FORM
+} from "../actions/types";
 
 const initialState = {
   events: [],
-  loading: false
+  loading: false,
+  form: {
+    title: "",
+    start: "",
+    end: "",
+    name: "",
+    color: "#ee0000"
+  }
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +36,20 @@ export default (state = initialState, action) => {
         ...state,
         events: action.payload,
         loading: false
+      };
+    case UPDATE_EVENT_FORM:
+      return {
+        ...state,
+        form: { ...state.form, ...action.payload }
+      };
+    case CLEAR_EVENT_FORM:
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          title: "",
+          name: ""
+        }
       };
     default:
       return state;

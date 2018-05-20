@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const events = require("./routes/api/events");
+const tags = require("./routes/api/tags");
 
 const app = express();
 
@@ -19,6 +20,7 @@ mongoose
 
 //use route
 app.use("/api/events", events);
+app.use("/api/tags", tags);
 
 const port = process.env.PORT || 5000;
 
