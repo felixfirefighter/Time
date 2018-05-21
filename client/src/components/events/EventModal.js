@@ -19,8 +19,6 @@ class EventModal extends Component {
   render() {
     const { start, end, title, name, color } = this.props.event.form;
 
-    console.log(title);
-
     return (
       <div>
         <Modal

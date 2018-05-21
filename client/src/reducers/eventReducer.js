@@ -3,7 +3,8 @@ import {
   ADD_EVENT,
   EVENT_LOADING,
   UPDATE_EVENT_FORM,
-  CLEAR_EVENT_FORM
+  CLEAR_EVENT_FORM,
+  SET_FORM_COLOR_WITH_TAG
 } from "../actions/types";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
     start: "",
     end: "",
     name: "",
-    color: "#ee0000"
+    color: "#0000ee"
   }
 };
 
@@ -36,6 +37,14 @@ export default (state = initialState, action) => {
         ...state,
         events: action.payload,
         loading: false
+      };
+    case SET_FORM_COLOR_WITH_TAG:
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          ...action.payload
+        }
       };
     case UPDATE_EVENT_FORM:
       return {

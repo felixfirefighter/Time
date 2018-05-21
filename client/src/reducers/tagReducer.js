@@ -12,11 +12,6 @@ export default (state = initialState, action) => {
         ...state,
         tags: action.payload
       };
-    case GET_TAG_BY_NAME:
-      return {
-        ...state,
-        tag: action.payload
-      };
     case RESET_TAG:
       return {
         ...state,

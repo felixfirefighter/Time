@@ -18,6 +18,27 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Calendar extends Component {
+  eventStyleGetter = (event, start, end, isSelected) => {
+    console.log(event);
+
+    let backgroundColor;
+    if (event.tag != null) {
+      backgroundColor = event.tag.color;
+    }
+
+    const style = {
+      backgroundColor: backgroundColor,
+      borderRadius: "0px",
+      opacity: 0.8,
+      color: "black",
+      border: "0px",
+      display: "block"
+    };
+    return {
+      style: style
+    };
+  };
+
   componentDidMount() {
     this.props.getEvents();
   }
@@ -46,7 +67,7 @@ class Calendar extends Component {
           defaultView="day"
           events={events}
           style={{ height: "100vh" }}
-          culture={"en"}
+          eventPropGetter={this.eventStyleGetter}
           onSelectSlot={slotInfo => {
             //open up modal
             // console.log(slotInfo);

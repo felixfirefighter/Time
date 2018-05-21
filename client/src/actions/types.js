@@ -10,6 +10,7 @@ export const CLOSE_MODAL = "CLOSE_MODAL";
 export const GET_TAGS = "GET_TAGS";
 export const GET_TAG_BY_NAME = "GET_TAG_BY_NAME";
 export const RESET_TAG = "RESET_TAG";
+export const SET_FORM_COLOR_WITH_TAG = "SET_FORM_COLOR_WITH_TAG";
 
 export const CHANGE_COLOR = "CHANGE_COLOR";
 

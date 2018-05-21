@@ -6,7 +6,8 @@ import {
   GET_EVENTS,
   EVENT_LOADING,
   UPDATE_EVENT_FORM,
-  CLEAR_EVENT_FORM
+  CLEAR_EVENT_FORM,
+  SET_FORM_COLOR_WITH_TAG
 } from "./types";
 
 export const updateEventForm = formData => {
@@ -57,5 +58,12 @@ export const getEvents = () => dispatch => {
 export const setEventLoading = () => {
   return {
     type: EVENT_LOADING
+  };
+};
+
+export const setFormColorWithTag = color => {
+  return {
+    type: SET_FORM_COLOR_WITH_TAG,
+    payload: color
   };
 };

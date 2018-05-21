@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { GET_TAG_BY_NAME, GET_TAGS, RESET_TAG, GET_ERRORS } from "./types";
+import {
+  GET_TAG_BY_NAME,
+  GET_TAGS,
+  RESET_TAG,
+  GET_ERRORS,
+  SET_FORM_COLOR_WITH_TAG
+} from "./types";
 
 export const getTags = () => dispatch => {
   axios
@@ -34,10 +40,4 @@ export const getTagByName = name => dispatch => {
         payload: err.response.data
       })
     );
-};
-
-export const resetTag = () => {
-  return {
-    type: RESET_TAG
-  };
 };

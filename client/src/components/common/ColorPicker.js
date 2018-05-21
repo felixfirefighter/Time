@@ -4,7 +4,6 @@ import reactCSS from "reactcss";
 import { connect } from "react-redux";
 
 import { updateEventForm } from "../../actions/eventActions";
-import { resetTag } from "../../actions/tagActions";
 
 class ColorPicker extends Component {
   state = {
@@ -16,7 +15,8 @@ class ColorPicker extends Component {
   };
 
   handleClick = () => {
-    this.props.resetTag();
+    // reset tag to {}
+    // this.props.resetTag();
     this.setState({ displayColorPicker: !this.state.displayColorPicker });
   };
 
@@ -25,12 +25,7 @@ class ColorPicker extends Component {
   };
 
   render() {
-    let color;
-    if (this.props.tag.tag.color != null) {
-      color = this.props.tag.tag.color;
-    } else {
-      color = this.props.event.form.color;
-    }
+    const color = this.props.event.form.color;
 
     const styles = reactCSS({
       default: {
@@ -85,6 +80,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  updateEventForm,
-  resetTag
+  updateEventForm
 })(ColorPicker);

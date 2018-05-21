@@ -4,8 +4,11 @@ import { Form, Input, Button, Select, Row, Col } from "antd";
 
 import ColorPicker from "../common/ColorPicker";
 
-import { updateEventForm } from "../../actions/eventActions";
-import { getTags, getTagByName } from "../../actions/tagActions";
+import {
+  updateEventForm,
+  setFormColorWithTag
+} from "../../actions/eventActions";
+import { getTags } from "../../actions/tagActions";
 
 class EventForm extends Component {
   componentDidMount() {
@@ -21,10 +24,10 @@ class EventForm extends Component {
   };
 
   onSelect = (value, option) => {
-    console.log(value, option);
-
     //change color on select
-    this.props.getTagByName(value);
+    const selectedTag = this.props.tag.tags.find(tag => tag.name === value);
+
+    this.props.setFormColorWithTag({ color: selectedTag.color });
   };
 
   onSubmit = e => {
@@ -142,6 +145,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getTags,
-  getTagByName,
+  setFormColorWithTag,
   updateEventForm
 })(EventForm);
