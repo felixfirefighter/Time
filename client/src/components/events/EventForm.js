@@ -41,7 +41,14 @@ class EventForm extends Component {
           color: this.props.event.form.color
         });
 
-        this.props.addEvent(getFieldsValue());
+        //if it is openNew, it is a new event
+        //if not, we want to update the event
+        if (this.props.openNew) {
+          this.props.addEvent(getFieldsValue());
+        } else {
+          this.props.updateEvent(this.props.event.form._id, getFieldsValue());
+        }
+
         //close the modal after submitting
         this.props.closeModal();
       }
@@ -61,6 +68,14 @@ class EventForm extends Component {
         );
       });
     }
+
+    const deleteButton = !this.props.openNew ? (
+      <Col>
+        <Button type="danger" htmlType="button">
+          Delete
+        </Button>
+      </Col>
+    ) : null;
 
     return (
       <Form onSubmit={this.onSubmit}>
@@ -130,9 +145,14 @@ class EventForm extends Component {
             </Form.Item>
           </Col>
         </Row>
-        <Button type="primary" htmlType="submit">
-          Save
-        </Button>
+        <Row type="flex" justify="space-between">
+          <Col>
+            <Button type="primary" htmlType="submit">
+              Save
+            </Button>
+          </Col>
+          {deleteButton}
+        </Row>
       </Form>
     );
   }

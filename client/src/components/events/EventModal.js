@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import { Modal } from "antd";
 
 import { openModal, closeModal } from "../../actions/modalActions";
-import { addEvent, updateEventForm } from "../../actions/eventActions";
+import {
+  addEvent,
+  updateEvent,
+  updateEventForm
+} from "../../actions/eventActions";
 
 import IsEmpty from "../../validation/is-empty";
 import Spinner from "../common/Spinner";
@@ -11,13 +15,14 @@ import ErrorAlert from "../alerts/ErrorAlert";
 import WrappedEventForm from "./WrappedEventForm";
 
 class EventModal extends Component {
-  handleOnFieldsChange = changeFields => {
-    console.log(changeFields);
-    this.props.updateEventForm(changeFields);
-  };
-
   render() {
     const { start, end, title, name, color } = this.props.event.form;
+
+    const header = this.props.modal.openNew ? (
+      <h1>Add New Event</h1>
+    ) : (
+      <h1>Edit Event</h1>
+    );
 
     return (
       <div>
@@ -26,7 +31,7 @@ class EventModal extends Component {
           onCancel={this.props.closeModal}
           footer={null}
         >
-          <h1>Event</h1>
+          {header}
 
           <ErrorAlert {...this.props.error} />
 
@@ -37,8 +42,9 @@ class EventModal extends Component {
             name={name}
             color={color}
             addEvent={this.props.addEvent}
+            updateEvent={this.props.updateEvent}
             closeModal={this.props.closeModal}
-            onFieldsChange={this.handleOnFieldsChange}
+            openNew={this.props.modal.openNew}
           />
         </Modal>
       </div>
@@ -55,7 +61,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   addEvent,
-  updateEventForm,
+  updateEvent,
   openModal,
   closeModal
 })(EventModal);

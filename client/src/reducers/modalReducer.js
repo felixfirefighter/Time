@@ -1,7 +1,8 @@
 import { OPEN_MODAL, CLOSE_MODAL } from "../actions/types";
 
 const initialState = {
-  modalIsOpen: false
+  modalIsOpen: false,
+  openNew: false
 };
 
 export default (state = initialState, action) => {
@@ -9,7 +10,8 @@ export default (state = initialState, action) => {
     case OPEN_MODAL:
       return {
         ...state,
-        modalIsOpen: true
+        modalIsOpen: true,
+        openNew: action.payload
       };
     case CLOSE_MODAL:
       return {

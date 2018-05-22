@@ -1,6 +1,7 @@
 import {
   GET_EVENTS,
   ADD_EVENT,
+  UPDATE_EVENT,
   EVENT_LOADING,
   UPDATE_EVENT_FORM,
   CLEAR_EVENT_FORM,
@@ -11,6 +12,7 @@ const initialState = {
   events: [],
   loading: false,
   form: {
+    _id: "",
     title: "",
     start: "",
     end: "",
@@ -31,6 +33,15 @@ export default (state = initialState, action) => {
         ...state,
         events: [...state.events, action.payload],
         loading: false
+      };
+    case UPDATE_EVENT:
+      const events = state.events.map(
+        event => (event._id === action.payload._id ? action.payload : event)
+      );
+
+      return {
+        ...state,
+        events
       };
     case GET_EVENTS:
       return {
@@ -56,6 +67,7 @@ export default (state = initialState, action) => {
         ...state,
         form: {
           ...state.form,
+          _id: "",
           title: "",
           name: ""
         }

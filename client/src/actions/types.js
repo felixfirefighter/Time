@@ -1,5 +1,6 @@
 export const GET_EVENTS = "GET_EVENTS";
 export const ADD_EVENT = "ADD_EVENT";
+export const UPDATE_EVENT = "UPDATE_EVENT";
 export const UPDATE_EVENT_FORM = "UPDATE_EVENT_FORM";
 export const CLEAR_EVENT_FORM = "CLEAR_EVENT_FORM";
 export const EVENT_LOADING = "EVENT_LOADING";

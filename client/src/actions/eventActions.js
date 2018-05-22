@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_ERRORS,
   ADD_EVENT,
+  UPDATE_EVENT,
   GET_EVENTS,
   EVENT_LOADING,
   UPDATE_EVENT_FORM,
@@ -35,6 +36,20 @@ export const addEvent = eventData => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+export const updateEvent = (id, eventData) => dispatch => {
+  axios
+    .post(`/api/events/${id}`, eventData)
+    .then(res => {
+      dispatch({ type: UPDATE_EVENT, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };
 
 export const getEvents = () => dispatch => {

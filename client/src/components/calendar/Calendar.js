@@ -19,8 +19,6 @@ BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
 class Calendar extends Component {
   eventStyleGetter = (event, start, end, isSelected) => {
-    console.log(event);
-
     let backgroundColor;
     if (event.tag != null) {
       backgroundColor = event.tag.color;
@@ -68,12 +66,25 @@ class Calendar extends Component {
           events={events}
           style={{ height: "100vh" }}
           eventPropGetter={this.eventStyleGetter}
+          onSelectEvent={event => {
+            this.props.openModal(false);
+
+            this.props.clearEventForm();
+
+            const { _id, start, end, tag, title } = event;
+            const { name, color } = tag;
+
+            console.log(event);
+
+            this.props.updateEventForm({ _id, start, end, title, name, color });
+          }}
           onSelectSlot={slotInfo => {
             //open up modal
             // console.log(slotInfo);
             const { start, end } = slotInfo;
 
-            this.props.openModal();
+            //true to indicate its a new event
+            this.props.openModal(true);
 
             //clear all the fields first
             this.props.clearEventForm();
