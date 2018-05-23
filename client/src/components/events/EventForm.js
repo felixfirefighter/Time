@@ -8,6 +8,9 @@ import {
   updateEventForm,
   setFormColorWithTag
 } from "../../actions/eventActions";
+
+import { openDeleteModal } from "../../actions/modalActions";
+
 import { getTags } from "../../actions/tagActions";
 
 class EventForm extends Component {
@@ -55,6 +58,11 @@ class EventForm extends Component {
     });
   };
 
+  onDeleteClick = () => {
+    console.log("DELETE");
+    this.props.openDeleteModal();
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
 
@@ -71,7 +79,7 @@ class EventForm extends Component {
 
     const deleteButton = !this.props.openNew ? (
       <Col>
-        <Button type="danger" htmlType="button">
+        <Button type="danger" htmlType="button" onClick={this.onDeleteClick}>
           Delete
         </Button>
       </Col>
@@ -166,5 +174,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getTags,
   setFormColorWithTag,
-  updateEventForm
+  updateEventForm,
+  openDeleteModal
 })(EventForm);

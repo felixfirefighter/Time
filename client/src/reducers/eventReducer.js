@@ -2,6 +2,7 @@ import {
   GET_EVENTS,
   ADD_EVENT,
   UPDATE_EVENT,
+  DELETE_EVENT,
   EVENT_LOADING,
   UPDATE_EVENT_FORM,
   CLEAR_EVENT_FORM,
@@ -35,13 +36,16 @@ export default (state = initialState, action) => {
         loading: false
       };
     case UPDATE_EVENT:
-      const events = state.events.map(
-        event => (event._id === action.payload._id ? action.payload : event)
-      );
-
       return {
         ...state,
-        events
+        events: state.events.map(
+          event => (event._id === action.payload._id ? action.payload : event)
+        )
+      };
+    case DELETE_EVENT:
+      return {
+        ...state,
+        events: state.events.filter(event => event._id != action.payload._id)
       };
     case GET_EVENTS:
       return {

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Calendar from "../calendar/Calendar";
 import EventModal from "../events/EventModal";
+import DeleteConfirmationModal from "../events/DeleteConfirmationModal";
 
 class CalendarContainer extends Component {
   render() {
@@ -12,7 +13,6 @@ class CalendarContainer extends Component {
     return (
       <div>
         <Calendar />
-
         {modal}
       </div>
     );
