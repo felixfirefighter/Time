@@ -15,7 +15,7 @@ class DeleteConfirmationModal extends Component {
           onCancel={this.props.closeDeleteModal}
           footer={null}
         >
-          <DeleteConfirmationForm id={this.props.event.form._id} />
+          <DeleteConfirmationForm />
         </Modal>
       </div>
     );
@@ -23,8 +23,7 @@ class DeleteConfirmationModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal,
-  event: state.event
+  modal: state.modal
 });
 
 export default connect(mapStateToProps, { closeDeleteModal })(

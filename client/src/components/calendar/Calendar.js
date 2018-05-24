@@ -54,6 +54,8 @@ class Calendar extends Component {
       events.map(event => {
         event.start = moment(event.start).toDate();
         event.end = moment(event.end).toDate();
+
+        return event;
       });
 
       // console.log(events);
@@ -64,7 +66,7 @@ class Calendar extends Component {
           defaultDate={new Date()}
           defaultView="day"
           events={events}
-          style={{ height: "100vh" }}
+          style={{ display: "100vh" }}
           eventPropGetter={this.eventStyleGetter}
           onSelectEvent={event => {
             this.props.openModal(false);

@@ -1,4 +1,4 @@
-import { GET_TAGS, GET_TAG_BY_NAME, RESET_TAG } from "../actions/types";
+import { GET_TAGS, RESET_TAG } from "../actions/types";
 
 const initialState = {
   tags: [],

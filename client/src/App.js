@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import moment from "moment";
-
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
 
-import CalendarContainer from "./components/layout/CalendarContainer";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import MasterLayout from "./components/layout/MasterLayout";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <CalendarContainer />
-        </div>
+        <Router>
+          <MasterLayout />
+        </Router>
       </Provider>
     );
   }

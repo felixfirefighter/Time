@@ -1,12 +1,6 @@
 import axios from "axios";
 
-import {
-  GET_TAG_BY_NAME,
-  GET_TAGS,
-  RESET_TAG,
-  GET_ERRORS,
-  SET_FORM_COLOR_WITH_TAG
-} from "./types";
+import { GET_TAG_BY_NAME, GET_TAGS, GET_ERRORS } from "./types";
 
 export const getTags = () => dispatch => {
   axios

@@ -1,13 +1,8 @@
-import React, { Component } from "react";
 import { Form } from "antd";
 
 import EventForm from "./EventForm";
 
 const WrappedEventForm = Form.create({
-  // onFieldsChange(props, changedFields) {
-  //   props.onFieldsChange(changedFields);
-  // },
-
   mapPropsToFields(props) {
     return {
       title: Form.createFormField({

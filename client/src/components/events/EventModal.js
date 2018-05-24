@@ -3,17 +3,10 @@ import { connect } from "react-redux";
 import { Modal } from "antd";
 
 import { openModal, closeModal } from "../../actions/modalActions";
-import {
-  addEvent,
-  updateEvent,
-  updateEventForm
-} from "../../actions/eventActions";
+import { addEvent, updateEvent } from "../../actions/eventActions";
 
-import IsEmpty from "../../validation/is-empty";
-import Spinner from "../common/Spinner";
 import ErrorAlert from "../alerts/ErrorAlert";
 import WrappedEventForm from "./WrappedEventForm";
-import DeleteConfirmationModal from "../events/DeleteConfirmationModal";
 
 class EventModal extends Component {
   render() {
@@ -24,11 +17,6 @@ class EventModal extends Component {
     ) : (
       <h1>Edit Event</h1>
     );
-
-    const deleteModal =
-      this.props.modal && this.props.modal.deleteModalIsOpen ? (
-        <DeleteConfirmationModal />
-      ) : null;
 
     return (
       <div>
@@ -53,8 +41,6 @@ class EventModal extends Component {
             openNew={this.props.modal.openNew}
           />
         </Modal>
-
-        {deleteModal}
       </div>
     );
   }

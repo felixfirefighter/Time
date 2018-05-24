@@ -10,10 +10,17 @@ class CalendarContainer extends Component {
     const modal =
       this.props.modal && this.props.modal.modalIsOpen ? <EventModal /> : null;
 
+    const deleteModal =
+      this.props.modal && this.props.modal.deleteModalIsOpen ? (
+        <DeleteConfirmationModal />
+      ) : null;
+
     return (
       <div>
         <Calendar />
         {modal}
+
+        {deleteModal}
       </div>
     );
   }

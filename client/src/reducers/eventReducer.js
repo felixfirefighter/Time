@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
     case DELETE_EVENT:
       return {
         ...state,
-        events: state.events.filter(event => event._id != action.payload._id)
+        events: state.events.filter(event => event._id !== action.payload._id)
       };
     case GET_EVENTS:
       return {
