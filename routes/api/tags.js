@@ -45,4 +45,15 @@ router.get("/:name", (req, res) => {
 //   const {errors, isValid} = validateTagInput(req.body)
 // });
 
+// @route   DELETE api/
+// @desc    delete a tag
+// @access  Public
+router.delete('/:id', (req, res) =>{
+  Tag.findByIdAndRemove(req.params.id, (err, doc) =>{
+    if (err) return res.status(404).json({ noTagFound: "No tag found." });
+
+    return res.json(doc);
+  })
+});
+
 module.exports = router;

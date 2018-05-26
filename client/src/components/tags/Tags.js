@@ -1,14 +1,41 @@
 import React, { Component } from "react";
 
+import { List, Button } from "antd";
+import Spinner from "../common/Spinner";
+
+import { getTags } from "../../actions/tagActions";
+
+import { connect } from "react-redux";
+
+import Tag from "./Tag";
+
 class Tags extends Component {
+  componentDidMount() {
+    this.props.getTags();
+  }
+
   render() {
-    return (
-      <div>
-        <h1>Tags</h1>
-        <p>aosdjaskdpoasdkpoasko</p>
-      </div>
-    );
+    const {tags} = this.props.tag;
+
+    let list;
+    if (tags == null) {
+      list = <Spinner />;
+    } else {
+      list = (
+        <List
+          itemLayout="horizontal"
+          dataSource={tags}
+          renderItem={item => <Tag name={item.name} color={item.color} _id={item._id}/>}
+        />
+      );
+    }
+
+    return <div>{list}</div>;
   }
 }
 
-export default Tags;
+const mapStateToProps = state => ({
+  tag: state.tag
+});
+
+export default connect(mapStateToProps, { getTags })(Tags);

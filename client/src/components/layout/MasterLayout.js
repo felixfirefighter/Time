@@ -4,8 +4,8 @@ import { Layout, Menu, Icon } from "antd";
 
 import { Link, Route, withRouter } from "react-router-dom";
 
-import CalendarContainer from "./CalendarContainer";
-import Tags from "../tags/Tags";
+import CalendarContainer from "../calendar/CalendarContainer";
+import TagsContainer from "../tags/TagsContainer";
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -17,6 +17,7 @@ class MasterLayout extends Component {
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible>
+          
           <Menu
             theme="dark"
             mode="inline"
@@ -39,8 +40,10 @@ class MasterLayout extends Component {
         </Sider>
         <Layout>
           <Content>
+          <div style={{backgroundColor: '#fff', padding: '24px'}}>
             <Route exact path="/" component={CalendarContainer} />
-            <Route exact path="/tags" component={Tags} />
+            <Route exact path="/tags" component={TagsContainer} />
+            </div>
           </Content>
         </Layout>
       </Layout>

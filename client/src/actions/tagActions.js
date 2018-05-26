@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_TAG_BY_NAME, GET_TAGS, GET_ERRORS } from "./types";
+import { GET_TAG_BY_NAME, GET_TAGS, ADD_TAG, UPDATE_TAG, DELETE_TAG, GET_ERRORS } from "./types";
 
 export const getTags = () => dispatch => {
   axios
@@ -35,3 +35,15 @@ export const getTagByName = name => dispatch => {
       })
     );
 };
+
+export const deleteTag = id => dispatch =>{
+  axios.delete(`/api/tags/${id}`)
+    .then(res =>
+      dispatch({
+        type: DELETE_TAG,
+        payload: res.data
+      })).catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
+}

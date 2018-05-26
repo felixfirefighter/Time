@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Calendar from "../calendar/Calendar";
+import Calendar from "./Calendar";
 import EventModal from "../events/EventModal";
 import DeleteConfirmationModal from "../events/DeleteConfirmationModal";
 

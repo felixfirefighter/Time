@@ -66,7 +66,7 @@ class Calendar extends Component {
           defaultDate={new Date()}
           defaultView="day"
           events={events}
-          style={{ display: "100vh" }}
+          style={{ height: "100vh" }}
           eventPropGetter={this.eventStyleGetter}
           onSelectEvent={event => {
             this.props.openModal(false);
@@ -74,7 +74,14 @@ class Calendar extends Component {
             this.props.clearEventForm();
 
             const { _id, start, end, tag, title } = event;
-            const { name, color } = tag;
+            // const { name, color } = tag;
+
+            let name = "";
+            let color = "";
+            if(tag != null){
+              name = tag.name;
+              color = tag.color;
+            }
 
             console.log(event);
 

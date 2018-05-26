@@ -12,8 +12,16 @@ export const CLOSE_MODAL = "CLOSE_MODAL";
 export const OPEN_DELETE_MODAL = "OPEN_DELETE_MODAL";
 export const CLOSE_DELETE_MODAL = "CLOSE_DELETE_MODAL";
 
+export const OPEN_DELETE_TAG_MODAL = "OPEN_DELETE_TAG_MODAL";
+export const CLOSE_DELETE_TAG_MODAL = "CLOSE_DELETE_TAG_MODAL";
+
 export const GET_TAGS = "GET_TAGS";
 export const GET_TAG_BY_NAME = "GET_TAG_BY_NAME";
+export const ADD_TAG ="ADD_TAG";
+export const UPDATE_TAG = "UPDATE_TAG";
+export const DELETE_TAG = "DELETE_TAG";
+
+
 export const RESET_TAG = "RESET_TAG";
 export const SET_FORM_COLOR_WITH_TAG = "SET_FORM_COLOR_WITH_TAG";
 
