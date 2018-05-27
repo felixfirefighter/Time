@@ -12,6 +12,11 @@ export default (state = initialState, action) => {
         ...state,
         tags: action.payload
       };
+    case UPDATE_TAG:
+      return {
+        ...state,
+        tags: state.tags.map(tag => (tag._id === action.payload._id) ? action.payload : tag)
+      }
     case DELETE_TAG:
       return{
         ...state,

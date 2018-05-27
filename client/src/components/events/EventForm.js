@@ -58,8 +58,11 @@ class EventForm extends Component {
     });
   };
 
+  updateColor = color => {
+    this.props.updateEventForm({ color: color.hex });
+  };
+
   onDeleteClick = () => {
-    console.log("DELETE");
     this.props.openDeleteModal();
   };
 
@@ -149,7 +152,7 @@ class EventForm extends Component {
           <Col span={4}>
             {getFieldDecorator("color")(<input type="hidden" />)}
             <Form.Item>
-              <ColorPicker />
+              <ColorPicker updateColor={this.updateColor} color={this.props.event.form.color}/>
             </Form.Item>
           </Col>
         </Row>

@@ -6,6 +6,7 @@ import { Link, Route, withRouter } from "react-router-dom";
 
 import CalendarContainer from "../calendar/CalendarContainer";
 import TagsContainer from "../tags/TagsContainer";
+import ChartsContainer from '../charts/ChartsContainer';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -36,6 +37,12 @@ class MasterLayout extends Component {
                 <span>Tags</span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="/charts">
+              <Link to="/charts">
+                <Icon type="pie-chart" />
+                <span>Charts</span>
+              </Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -43,6 +50,7 @@ class MasterLayout extends Component {
           <div style={{backgroundColor: '#fff', padding: '24px'}}>
             <Route exact path="/" component={CalendarContainer} />
             <Route exact path="/tags" component={TagsContainer} />
+            <Route exact path="/charts" component={ChartsContainer}/>
             </div>
           </Content>
         </Layout>

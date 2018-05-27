@@ -45,15 +45,39 @@ router.get("/:name", (req, res) => {
 //   const {errors, isValid} = validateTagInput(req.body)
 // });
 
-// @route   DELETE api/
+// @route   POST api/:id
+// @desc    update a tag
+// @access  Public
+router.post("/:id", (req, res) => {
+  const { errors, isValid } = validateTagInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const { name, color } = req.body;
+
+  Tag.findByIdAndUpdate(
+    req.params.id,
+    { name, color },
+    { new: true },
+    (err, doc) => {
+      if (err) return res.status(400).json(err);
+
+      return res.json(doc);
+    }
+  );
+});
+
+// @route   DELETE api/:id
 // @desc    delete a tag
 // @access  Public
-router.delete('/:id', (req, res) =>{
-  Tag.findByIdAndRemove(req.params.id, (err, doc) =>{
+router.delete("/:id", (req, res) => {
+  Tag.findByIdAndRemove(req.params.id, (err, doc) => {
     if (err) return res.status(404).json({ noTagFound: "No tag found." });
 
     return res.json(doc);
-  })
+  });
 });
 
 module.exports = router;

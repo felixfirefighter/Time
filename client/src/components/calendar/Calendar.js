@@ -64,7 +64,7 @@ class Calendar extends Component {
         <BigCalendar
           selectable
           defaultDate={new Date()}
-          defaultView="day"
+          defaultView="week"
           events={events}
           style={{ height: "100vh" }}
           eventPropGetter={this.eventStyleGetter}
@@ -82,8 +82,6 @@ class Calendar extends Component {
               name = tag.name;
               color = tag.color;
             }
-
-            console.log(event);
 
             this.props.updateEventForm({ _id, start, end, title, name, color });
           }}

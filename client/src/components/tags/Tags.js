@@ -18,14 +18,14 @@ class Tags extends Component {
     const {tags} = this.props.tag;
 
     let list;
-    if (tags == null) {
+    if (tags.length == 0) {
       list = <Spinner />;
     } else {
       list = (
         <List
           itemLayout="horizontal"
           dataSource={tags}
-          renderItem={item => <Tag name={item.name} color={item.color} _id={item._id}/>}
+          renderItem={item => <Tag _id={item._id} name={item.name} color={item.color} _id={item._id}/>}
         />
       );
     }

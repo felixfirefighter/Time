@@ -36,6 +36,17 @@ export const getTagByName = name => dispatch => {
     );
 };
 
+export const updateTag = (id, tagData) => dispatch =>{
+  axios.post(`/api/tags/${id}`, tagData)
+    .then(res => dispatch({
+      type: UPDATE_TAG,
+      payload: res.data
+    })).catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
+
 export const deleteTag = id => dispatch =>{
   axios.delete(`/api/tags/${id}`)
     .then(res =>

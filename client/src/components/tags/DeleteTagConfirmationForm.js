@@ -55,6 +55,6 @@ const mapStateToProps = state => ({
   modal: state.modal
 });
 
-export default connect(mapStateToProps, { deleteTag })(
+export default connect(mapStateToProps, { deleteTag, closeDeleteTagModal })(
   WrappedDeleteTagConfirmationForm
 );

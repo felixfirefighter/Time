@@ -10,9 +10,7 @@ class ColorPicker extends Component {
     displayColorPicker: false
   };
 
-  updateColor = color => {
-    this.props.updateEventForm({ color: color.hex });
-  };
+  
 
   handleClick = () => {
     // reset tag to {}
@@ -25,7 +23,7 @@ class ColorPicker extends Component {
   };
 
   render() {
-    const color = this.props.event.form.color;
+    const color = this.props.color;
 
     const styles = reactCSS({
       default: {
@@ -66,7 +64,7 @@ class ColorPicker extends Component {
         {this.state.displayColorPicker ? (
           <div style={styles.popover}>
             <div style={styles.cover} onClick={this.handleClose} />
-            <SketchPicker color={color} onChange={this.updateColor} />
+            <SketchPicker color={color} onChange={this.props.updateColor} />
           </div>
         ) : null}
       </div>
